@@ -25,14 +25,14 @@
     }
 
     @include respond(lg) {
-      max-width: 1280px;
+      max-width: 1024px;
       --left-sidebar-max-width: 20%;
       --right-sidebar-max-width: 30%;
     }
 
     @include respond(xl) {
-      max-width: 1536px;
-      --left-sidebar-max-width: 15%;
+      max-width: 1024px;
+      --left-sidebar-max-width: 20%;
       --right-sidebar-max-width: 25%;
     }
   }

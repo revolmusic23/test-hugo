@@ -5,7 +5,7 @@
     {{ $pag := .Paginate ($filtered) }}
 
     <section class="article-list">
-        {{ range $index, $element := $pag.Pages }}
+        {{ range $index, $element := ($pag.Pages.ByDate.Reverse) }}
             {{ partial "article-list/default" . }}
         {{ end }}
     </section>
@@ -15,5 +15,5 @@
 {{ end }}
 
 {{ define "right-sidebar" }}
-    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+    <!-- {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }} -->
 {{ end }}
