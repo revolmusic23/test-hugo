@@ -1,5 +1,6 @@
 # Change baseurl before deploy
-baseurl = "https://demo.stack.jimmycai.com"
+# baseurl = "https://demo.stack.jimmycai.com"
+baseURL = "https://revolmusic23.github.io/test-hugo/"
 languageCode = "en-us"
 title = "Hugo Theme Stack Starter"
 
