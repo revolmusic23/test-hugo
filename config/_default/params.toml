@@ -1,5 +1,5 @@
 # Pages placed under these sections will be shown on homepage and archive page.
-mainSections = ["post"]
+mainSections = ["posts"]
 # Output page's full content in RSS.
 rssFullContent = true
 favicon = "/favicon.png"
@@ -75,8 +75,8 @@ enabled = true
 
 ## Comments
 [comments]
-enabled = true
-provider = "disqus"
+# enabled = true
+# provider = "disqus"
 
 [comments.disqusjs]
 shortname = ""
