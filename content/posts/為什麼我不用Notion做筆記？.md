@@ -1,7 +1,7 @@
 ---
 title: 為什麼我不用 Notion 做筆記？
-date: 2024-01-27
-description: Useful shortcodes that can be used in Markdown
+date: 2025-01-27
+description: 你曾經被 Evernote 搞到頭痛嗎？有沒有想過使用 Notion 未來會再經歷相同的過程一次？
 slug: why-i-dont-use-notion
 ---
 
