@@ -2,7 +2,8 @@
 mainSections = ["posts"]
 # Output page's full content in RSS.
 rssFullContent = true
-favicon = "/favicon.png"
+favicon = "/favicon.ico"
+# favicon = "/revolc-font-logo.jpeg"
 
 [footer]
 since = 2020
