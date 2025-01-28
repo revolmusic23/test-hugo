@@ -29,6 +29,9 @@ article:
   lastUpdatedOn:
     other: 最後更新
 
+  wordCount:
+    other: "{{ .Count }} 字"
+
   readingTime:
     one: "閱讀時間：{{ .Count }} 分鐘"
     other: "閱讀時間：{{ .Count }} 分鐘"

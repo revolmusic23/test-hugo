@@ -31,5 +31,7 @@
         </div>
     {{ end }} -->
 
-    {{ partialCached "article/components/details" . .RelPermalink }}
+    <!-- {{ partialCached "article/components/details" . .RelPermalink }} -->
+    {{ partial "article/components/details" . }}
+    <!-- {{ partialCached "article/components/details" . .RelPermalink .WordCount }} -->
 </header>
