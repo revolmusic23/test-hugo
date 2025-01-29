@@ -135,6 +135,10 @@
     margin: 0;
     font-size: 1.6rem;
 
+    a:hover {
+      opacity: 0.7;
+    }
+
     @include respond(2xl) {
       font-size: 1.8rem;
     }

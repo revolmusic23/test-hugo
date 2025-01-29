@@ -4,7 +4,8 @@ date: 2024-07-18
 tags: ["Git"]
 description: "每次多人協作，都有一堆分支衝突嗎？"
 slug: how-to-merge-git-branch-to-main
-draft: true
+categories:
+  - code
 ---
 
 簡單來說，分成三個階段：
