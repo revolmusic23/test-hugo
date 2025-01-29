@@ -15,7 +15,7 @@
     transition: box-shadow 0.3s ease;
 
     &:hover {
-      box-shadow: var(--shadow-l2);
+      background-color: var(--card-background-hover);
     }
 
     .article-image {
@@ -156,6 +156,10 @@
   box-shadow: var(--shadow-l1);
   background-color: var(--card-background);
   --image-size: 50px;
+
+  :hover {
+    background-color: var(--card-background-hover);
+  }
 
   @include respond(md) {
     --image-size: 60px;

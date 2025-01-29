@@ -197,6 +197,10 @@
       align-items: center;
       color: var(--body-text-color);
       gap: var(--menu-icon-separation);
+
+      &:hover {
+        color: var(--accent-color-darker);
+      }
     }
 
     span {

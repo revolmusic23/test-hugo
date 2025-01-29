@@ -178,6 +178,10 @@
   .icon-tabler-toggle-right {
     display: none;
   }
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 #i18n-switch {
