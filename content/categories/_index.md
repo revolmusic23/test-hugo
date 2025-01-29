@@ -6,7 +6,7 @@ layout: "categories"
 slug: "categories"
 menu:
   main:
-    weight: 5
+    weight: 50
     params:
-      icon: hash
+      icon: category
 ---

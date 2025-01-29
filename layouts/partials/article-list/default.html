@@ -1,4 +1,21 @@
 {{ $image := partialCached "helper/image" (dict "Context" . "Type" "articleList") .RelPermalink "articleList" }}
 <article class="{{ if $image.exists }}has-image{{ end }}">
-    {{ partial "article/components/header" . }}
+    <!-- {{ partial "article/components/header" . }} -->
+    <header class="article-header">
+        {{- $image := partialCached "helper/image" (dict "Context" . "Type" "article") .RelPermalink "article" -}}
+        <a href="{{ .RelPermalink }}">
+            <div class="article-details">
+                <div class="article-title-wrapper">
+                    <h2 class="article-title">
+                        {{- .Title -}}
+                    </h2>
+                
+                    <h3 class="article-subtitle">
+                        {{ default "-" .Params.description }}
+                    </h3>
+                    {{ partial "article/components/time-info" . }}
+                </div>
+            </div>
+        </a>
+    </header>
 </article>

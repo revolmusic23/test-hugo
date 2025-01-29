@@ -1,0 +1,32 @@
+{{ $showReadingTime := .Params.readingTime | default (.Site.Params.article.readingTime) }}
+{{ $showDate := not .Date.IsZero }}
+{{ $showFooter := or $showDate $showReadingTime }}
+{{ if $showFooter }}
+<footer class="article-time">
+    {{ if $showDate }}
+        <div>
+            {{ partial "helper/icon" "date" }}
+            <time class="article-time--published">
+                {{- .Date | time.Format "2006/1/2" -}}
+            </time>
+        </div>
+    {{ end }}
+
+    {{ if $showReadingTime }}
+        <div>
+            {{ partial "helper/icon" "pencil" }}
+            <time class="article-time--reading">
+                {{ $wordCount := .Plain | countwords }}
+                {{ T "article.wordCount" (dict "Count" $wordCount) }}
+            </time>
+        </div>
+        <div>
+            {{ partial "helper/icon" "clock" }}
+            <time class="article-time--reading">
+                {{ $readingTime := math.Round (div $wordCount 300.0) }}
+                {{ T "article.readingTime" (dict "Count" $readingTime) }}
+            </time>
+        </div>
+    {{ end }}
+</footer>
+{{ end }}
