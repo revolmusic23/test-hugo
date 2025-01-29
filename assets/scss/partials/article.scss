@@ -159,6 +159,7 @@
 
   :hover {
     background-color: var(--card-background-hover);
+    border-radius: var(--card-border-radius);
   }
 
   @include respond(md) {

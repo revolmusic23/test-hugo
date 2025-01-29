@@ -53,10 +53,13 @@ widget:
 
   tagCloud:
     title:
-      other: 標籤雲
+      other: 標籤
   categoriesCloud:
     title:
       other: 分類
+
+  articleCount:
+    other: "{{ .Count }} 篇文章"
 
 search:
   title:

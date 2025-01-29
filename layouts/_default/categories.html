@@ -1,0 +1,42 @@
+{{ define "body-class" }}template-categories{{ end }}
+
+{{ define "main" }}
+    {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
+    {{- $terms := $taxonomy.Pages -}}
+
+    <section class="article-list">
+        {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+            {{ $categoryPage := $.Site.GetPage (printf "/categories/%s" $name) }}
+            <article class="article-list--compact has-border">
+                <a href="{{ "categories/" | relLangURL }}{{ $name | urlize }}">
+                    {{ if $categoryPage.Params.image }}
+                        <div class="article-image">
+                            <img src="{{ $categoryPage.Params.image }}" alt="{{ $categoryPage.Title }}" />
+                        </div>
+                    {{ end }}
+                    <div class="article-details">
+                        <h2 class="article-title">
+                            {{ if $categoryPage.Title }}
+                                {{ $categoryPage.Title }}
+                            {{ else }}
+                                {{ $name }}
+                            {{ end }}
+                        </h2>
+                        {{ if $categoryPage.Description }}
+                            <h3 class="article-subtitle">
+                                {{ $categoryPage.Description }}
+                            </h3>
+                        {{ end }}
+                        <footer class="article-time">
+                            <div class="article-meta">
+                                {{ T "widget.articleCount" (dict "Count" (len $taxonomy)) }}
+                            </div>
+                        </footer>
+                    </div>
+                </a>
+            </article>
+        {{ end }}
+    </section>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}

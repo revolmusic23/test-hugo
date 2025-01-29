@@ -1,0 +1,14 @@
+{{ define "body-class" }}template-category{{ end }}
+
+{{ define "main" }}
+    <div class="archives-group">
+        <h2 class="archives-date section-title">{{ .Title }}</h2>
+        <div class="article-list--compact">
+            {{ range .Pages }}
+                {{ partial "article-list/compact" . }}
+            {{ end }}
+        </div>
+    </div>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}

@@ -33,31 +33,17 @@
 
     <!-- {{ partialCached "article/components/details" . .RelPermalink }} -->
     <div class="article-details">
-        <!-- {{ if .Params.categories }}
-        <header class="article-category">
-            {{ range (.GetTerms "categories") }}
-                <a href="{{ .RelPermalink }}" {{ with .Params.style }}style="background-color: {{ .background }}; color: {{ .color }};"{{ end }}>
-                    {{ .LinkTitle }}
-                </a>
+        <div class="article-title-wrapper">
+            <h2 class="article-content-title">
+                {{- .Title -}}
+            </h2>
+        
+            {{ with .Params.description }}
+            <h3 class="article-subtitle">
+                {{ . }}
+            </h3>
             {{ end }}
-        </header>
-        {{ end }} -->
-
-        <!-- <a href="{{ .RelPermalink }}"> -->
-            <div class="article-title-wrapper">
-                <h2 class="article-content-title">
-                    <!-- <a href="{{ .RelPermalink }}"> -->
-                        {{- .Title -}}
-                    <!-- </a> -->
-                </h2>
-            
-                {{ with .Params.description }}
-                <h3 class="article-subtitle">
-                    {{ . }}
-                </h3>
-                {{ end }}
-            </div>
-        <!-- </a> -->
+        </div>
 
         {{ $showReadingTime := .Params.readingTime | default (.Site.Params.article.readingTime) }}
         {{ $showDate := not .Date.IsZero }}
@@ -92,7 +78,7 @@
         </footer>
         {{ end }}
 
-        {{ if .IsTranslated }}
+        <!-- {{ if .IsTranslated }}
             <footer class="article-translations">
                 {{ partial "helper/icon" "language" }}
                 <div>
@@ -101,6 +87,16 @@
                     {{ end }}
                 </div>
             </footer>
+        {{ end }} -->
+
+        {{ if .Params.categories }}
+            <header class="article-category">
+                {{ range (.GetTerms "categories") }}
+                    <a href="{{ .RelPermalink }}" {{ with .Params.style }}style="background-color: #6d9489; color: {{ .color }};"{{ end }}>
+                        {{ .LinkTitle }}
+                    </a>
+                {{ end }}
+            </header>
         {{ end }}
     </div>
 

@@ -58,6 +58,9 @@ widget:
     title:
       other: Categories
 
+  articleCount:
+    other: "{{ .Count }} articles"
+
 search:
   title:
     other: Search
