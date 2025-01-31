@@ -23,7 +23,7 @@
         <div>
             {{ partial "helper/icon" "clock" }}
             <time class="article-time--reading">
-                {{ $readingTime := math.Round (div $wordCount 300.0) }}
+                {{ $readingTime := math.Round (div $wordCount 200.0) }}
                 {{ T "article.readingTime" (dict "Count" $readingTime) }}
             </time>
         </div>
