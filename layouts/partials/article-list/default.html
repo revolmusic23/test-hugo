@@ -11,7 +11,7 @@
                     </h2>
                 
                     <h3 class="article-subtitle">
-                        {{ default "-" .Params.description }}
+                        {{ default (.Plain | truncate 40 "....") .Params.description }}
                     </h3>
                     {{ partial "article/components/time-info" . }}
                 </div>
