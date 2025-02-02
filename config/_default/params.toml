@@ -4,6 +4,9 @@ mainSections = ["articles"]
 rssFullContent = true
 favicon = "revolc-font-logo.jpeg"
 
+description = "走走看看這個世界。"  # 可以用你現在的 subtitle
+images = ["img/revolc-font-logo.jpeg"]  # 使用你現在的 logo 作為預設分享圖片
+
 [footer]
 since = 2024
 customText = ""
@@ -54,6 +57,11 @@ limit = 10
 
 [[widgets.page]]
 type = "toc"
+
+[opengraph]
+enabled = true
+images = ["img/revolc-font-logo.jpeg"]
+defaultImage = "img/revolc-font-logo.jpeg"
 
 [opengraph.twitter]
 site = ""
