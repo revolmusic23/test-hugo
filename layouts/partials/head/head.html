@@ -10,6 +10,15 @@
 
 <link rel='canonical' href='{{ .Permalink }}'>
 
+<!-- Favicon 設定 -->
+{{ with .Site.Params.favicon }}
+    <link rel="shortcut icon" href="{{ . | relURL }}" />
+    <link rel="icon" type="image/jpeg" href="{{ . | relURL }}">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="{{ . | relURL }}">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="{{ . | relURL }}">
+    <link rel="apple-touch-icon" href="{{ . | relURL }}">
+{{ end }}
+
 {{- partial "head/style.html" . -}}
 {{- partial "head/script.html" . -}}
 {{- partial "head/opengraph/include.html" . -}}
