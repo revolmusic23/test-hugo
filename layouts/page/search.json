@@ -1,4 +1,4 @@
-{{- $pages := where .Site.RegularPages "Type" "in" (slice "articles") -}}
+{{- $pages := where .Site.RegularPages "Type" "in" (slice "posts") -}}
 {{- $notHidden := where .Site.RegularPages "Params.hidden" "!=" true -}}
 {{- $filtered := ($pages | intersect $notHidden) -}}
 
