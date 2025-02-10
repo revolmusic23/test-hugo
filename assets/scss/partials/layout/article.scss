@@ -425,6 +425,10 @@
     background-color: var(--tr-even-background-color);
   }
 
+  p:has(em) {
+    text-align: center;
+  }
+
   .twitter-tweet {
     color: var(--card-text-color-main);
   }
