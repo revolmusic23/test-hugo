@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Markdown on RevolC.Blog</title><link>https://revolc.blog/tags/markdown/</link><description>Recent content in Markdown on RevolC.Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://revolc.blog/tags/markdown/index.xml" rel="self" type="application/rss+xml"/><item><title>好的筆記檔案管理方式</title><link>https://revolc.blog/posts/good-way-to-manage-notes/</link><pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate><guid>https://revolc.blog/posts/good-way-to-manage-notes/</guid><description>&lt;h2 id="一般的做筆記方式">一般的做筆記方式
+&lt;/h2>&lt;p>一般最常見的筆記方式大概有兩種：&lt;/p>
+&lt;ol>
+&lt;li>使用 Notion、Evernote 等專有軟體。&lt;/li>
+&lt;li>iPhone 內建 Notes 等簡單筆記軟體。&lt;/li>
+&lt;/ol>
+&lt;p>為什麼我不推薦這樣管理筆記，原因我已經在「&lt;a class="link" href="https://revolc.blog/posts/why-i-dont-use-notion/" >這篇文章&lt;/a>」講過，簡單來說，就是：&lt;/p>
+&lt;ol>
+&lt;li>很難脫離或搬移。&lt;/li>
+&lt;li>看不到筆記檔案。&lt;/li>
+&lt;/ol>
+&lt;h2 id="為什麼看得到檔案很重要">為什麼「看得到檔案」很重要？
+&lt;/h2>&lt;p>對我來說，最理想的筆記檔案管理方式，就是一個筆記一個檔案，這個檔案可以直接在電腦的檔案管理系統看到。&lt;/p>
+&lt;p>以下我整理了一些「看得到檔案」的優點：&lt;/p>
+&lt;h3 id="1-方便備份">1. 方便備份：
+&lt;/h3>&lt;p>我們應該都知道「備份」有多重要。如果今天這個專有軟體突然因為什麼突發原因不能用了，或因為什麼系統或版本原因打不開了怎麼辦？這時候如果沒有備份，那你的重要筆記們就完蛋了。&lt;/p>
+&lt;p>如果你使用一些像是 Notion 的看不到檔案的專有軟體，會很難把你的筆記內容備份到你自己的雲端或硬碟。&lt;/p>
+&lt;h3 id="2-方便傳遞">2. 方便傳遞
+&lt;/h3>&lt;p>想想看如果今天要傳 Notion 檔案，通常會怎麼傳？以我之前的經驗，是這篇筆記裡面會有一個「複製連結」的選項，並把連結傳給別人。這個連結通常都是內嵌在軟體裡面的，也就是說如果別人要打開，常常都也要自己本身有那個軟體，才能好好閱讀。&lt;/p>
+&lt;p>除了傳遞給其他人以外，有時候也可能想要傳遞給「其他裝置」，例如說我想把這個筆記從電腦傳到手機、平板。&lt;/p>
+&lt;h3 id="3-可以自由變換檔案系統">3. 可以自由變換檔案系統
+&lt;/h3>&lt;p>既然檔案都看得到，那你想要用什麼系統管理檔案，都很方便，只要按著檔案拖曳就可以任意排列了。看要用什麼「PARA 系統」、「卡片盒筆記」等等的都可以。&lt;/p>
+&lt;h2 id="要選用什麼檔案格式">要選用什麼檔案格式？
+&lt;/h2>&lt;p>如果是看得到檔案的話，那用 Word 的 &lt;code>.doc&lt;/code> 檔不行嗎？&lt;/p>
+&lt;p>我個人也是不推薦，因為 Word 一樣也是專有軟體，並不是每個人都有買正版的 Microsoft Office，像我身邊很多用 Mac 的人都沒有買。這個例子也可以套用在，為什麼我不推薦使用 MacOS 裡面的 Pages 做筆記，因為如果今天你突然想換 Windows 或 Linux 的作業系統，一樣會很麻煩。&lt;/p>
+&lt;p>你可能會想說，誒可是就算沒有一樣的軟體，還是一樣可以打開檔案跟編輯啊，像是 Pages 就可以打開 &lt;code>.doc&lt;/code> 檔。這個部分是沒有錯，但是因為這兩個本來就是不同的軟體，很多東西都不相容、也會跑版。&lt;/p>
+&lt;blockquote>
+&lt;p>這個檔案，我十年後還可以打開嗎？&lt;/p>&lt;/blockquote>
+&lt;p>像是 &lt;code>.txt&lt;/code>、&lt;code>.md&lt;/code> 等格式，這些都是開放格式，裡面全部都只有純文字，所以不管過了多久我都一樣可以打開。像我現在的筆記都是使用 Markdown（&lt;code>.md&lt;/code>）格式。&lt;/p>
+&lt;p>我覺得這個問題可以套用在所有領域上。例如打譜軟體 Finale、編曲軟體 Logic Pro 這些檔案，我十年後還打得開嗎？如果沒辦法肯定，那我覺得就要有找其他方案，或至少把裡面的重要資料備份出來。&lt;/p></description></item><item><title>為什麼我不用 Notion 做筆記？</title><link>https://revolc.blog/posts/why-i-dont-use-notion/</link><pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate><guid>https://revolc.blog/posts/why-i-dont-use-notion/</guid><description>&lt;h2 id="跳出-evernote-的痛苦過程">跳出 Evernote 的痛苦過程
+&lt;/h2>&lt;p>以前我是用 Evernote 做筆記，但後來因為他的速度越來越慢，而且很多功能越來越複雜，於是決定跳出。在最一開始，我也是選擇搬移到最熱門的 Notion，然而在搬移筆記的過程真的非常複雜且痛苦。&lt;/p>
+&lt;p>我舉幾個頭痛的點：&lt;/p>
+&lt;ul>
+&lt;li>轉移之後，原本筆記內文的圖片都沒辦法正常呈現，那些圖片都被放在其他地方，我還要一個一個去把它們重新插入內文。&lt;/li>
+&lt;li>兩個軟體的檔案管理系統有差異：Evernote 有記事本、記事本堆疊、標籤等等的功能，但是這些到了 Notion 又得重新手動設定。&lt;/li>
+&lt;li>裡面有一些我畫螢光筆、粗體、斜體的地方，也沒辦法順利轉移。&lt;/li>
+&lt;/ul>
+&lt;p>我的筆記可能有上百上千個，這樣改下來根本沒完沒了。&lt;/p>
+&lt;h2 id="notion-只是另一個-evernote">Notion 只是另一個 Evernote
+&lt;/h2>&lt;p>網路上有一堆人在分享自己的範本，甚至還有一大堆線上課程在教怎麼製作範本。&lt;/p>
+&lt;p>Notion 真的長得很好看，這點我完全同意，而且設計的也非常好。但，當哪天它突然變得很難用、或是收費突然變很貴，讓我必須要轉移的時候，我想那才是惡夢的開始。到那時，我的筆記可能是現在的兩三倍，我可不想再感受一次當時從 Evernote 轉移出來的痛苦。&lt;/p>
+&lt;p>況且，我覺得 Notion 的範本可能又比 Evernote 更複雜，那些精美範本的背後，可能都是各種複雜的格式。&lt;/p>
+&lt;p>我認為使用這些專有軟體，有點相當於被這些專有軟體「綁架」的感覺。我花了幾個月、看了各種教學影片和文章，才好不容易摸清楚這個軟體怎麼用。所以哪天它突然變貴了的話，我就會想說自己都花了這麼多時間跟心思、轉移也很麻煩，只好加錢訂閱了。&lt;/p>
+&lt;h2 id="使用-markdown-格式管理筆記檔案">使用 Markdown 格式管理筆記檔案
+&lt;/h2>&lt;p>我使用的筆記管理方式，就是在電腦裡面開一個筆記資料夾（例如 Mac 的 FInder）、並把所有筆記都存成 &lt;code>.md&lt;/code> 檔。接著，使用像是 Obsidian 之類的 Markdown 編輯軟體，直接打開這些資料夾跟創建筆記。因為這些全部都是「看得到」的檔案，所以如果我今天突然覺得這個軟體不好用的話，我可以直接不用、使用另外一個軟體打開、編輯。&lt;/p>
+&lt;blockquote>
+&lt;p>我曾經使用過的有：Zettlr、MarkText，現在用的是 Obsidian。也有聽到蠻多人用 Typora，不過我沒有用過。&lt;/p>&lt;/blockquote>
+&lt;p>而且因為 Markdown 是開放格式，所以我不需要為了使用某些軟體，而特別學習它們的操作方式。像是在 Evernote，如果我想要把字體換成標題，我就要選取文字，然後用滑鼠修改字體大小、粗度、顏色；在 Word 或 Pages 裡面，如果我想要列點，我就要去找清單樣式在哪裡。&lt;/p>
+&lt;p>每個軟體的工具項都在不同的地方，有些很難找的時候甚至還要去看教學影片，但在 Markdown 格式裡面，我只要打井字號（&lt;code>#&lt;/code>）就是標題；打兩個星號（&lt;code>**&lt;/code>）就是粗體；要引用圖片，就直接打 &lt;code>![]()&lt;/code>，根本不用管這是什麼軟體。&lt;/p></description></item></channel></rss>

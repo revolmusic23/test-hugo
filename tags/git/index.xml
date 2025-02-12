@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on RevolC.Blog</title><link>https://revolc.blog/tags/git/</link><description>Recent content in Git on RevolC.Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://revolc.blog/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>在 Git 裡面，怎麼把自己的分支 merge 進 main？</title><link>https://revolc.blog/posts/how-to-merge-git-branch-to-main/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://revolc.blog/posts/how-to-merge-git-branch-to-main/</guid><description>&lt;p>簡單來說，分成三個階段：&lt;/p>
+&lt;ol>
+&lt;li>將自己分支的本地端和遠端同步。&lt;/li>
+&lt;li>將主分支合併到自己的主分支，並讓本地端和遠端同步。將主分支合併到自己的主分支，並讓本地端和遠端同步。&lt;/li>
+&lt;li>將自己分支合併到主分支。&lt;/li>
+&lt;/ol>
+&lt;p>假設公司的主要分支叫做 &lt;code>main&lt;/code>，而我現在在開發的分支叫做 &lt;code>feature/login&lt;/code>，那我要怎麼把我現在的分支合併到 &lt;code>main&lt;/code>？
+首先，要先讓自己的分支是乾淨的，也就是要在 &lt;code>feature/login&lt;/code> 執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">git pull
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>執行完之後，現在本地端和遠端的 &lt;code>feature/login&lt;/code> 是同步的。&lt;/p>
+&lt;p>接著，要把遠端最新的 &lt;code>main&lt;/code> 給拉到本地端，執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">git fetch origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>此時，我的本地端就有最新的 &lt;code>feature/login&lt;/code> 和 &lt;code>origin/main&lt;/code>。&lt;/p>
+&lt;p>接著就是要把這兩個分支合併起來。在 &lt;code>feature/login&lt;/code> 分支上執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">git merge origin/main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>這個指令是要將剛剛從遠端啦過來的最新的 &lt;code>main&lt;/code> 合併到我的 &lt;code>feature/login&lt;/code>。
+此時，可能會發生所謂的「衝突」（Conflict），這是因為你跟別人可能有改到同一個檔案。因此，所謂的「解衝突」就是要決定說，在這個檔案裡面，兩個檔案不一樣的地方要選擇哪一個。&lt;/p>
+&lt;p>當解完衝突之後，再執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">git push
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>這時候，你是將你的 &lt;code>feature/login&lt;/code> 分支（其中也包含 &lt;code>main&lt;/code> 的部分）給推到遠端程式碼上面。
+此時可以檢查 Commit 記錄。所謂的 Commit 記錄就是每一次程式碼提交的「截圖」。
+若 &lt;code>main&lt;/code> 最新的 Commit 記錄有包含在 &lt;code>feature/login&lt;/code> 的 Commit 記錄裡面，那就代表你的 &lt;code>feature/login&lt;/code> 已經包含了 &lt;code>main&lt;/code>，這時就可以發出合併請求（Merge Request），等待主管同意。&lt;/p></description></item></channel></rss>

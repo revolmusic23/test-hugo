@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on RevolC.Blog</title><link>https://revolc.blog/tags/javascript/</link><description>Recent content in JavaScript on RevolC.Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 04 Apr 2024 16:00:00 +0800</lastBuildDate><atom:link href="https://revolc.blog/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>為什麼 Google 搜尋欄可以及時顯示搜尋建議？</title><link>https://revolc.blog/posts/why-google-search-fast/</link><pubDate>Thu, 04 Apr 2024 16:00:00 +0800</pubDate><guid>https://revolc.blog/posts/why-google-search-fast/</guid><description>&lt;p>你有沒有想過，當你在 Google 搜尋欄打字的時候，為什麼下面可以及時產生出各種搜尋建議？假設我們在搜尋欄輸入「籃球」，下面會及時顯示像是「籃球比分」、「籃球直播」等搜尋建議。&lt;/p>
+&lt;p>照理來說，這些搜尋建議都是資料，被存放在 Google 的資料庫（或稱後臺、伺服器）。如果要從 Google 的資料庫索取到這些搜尋建議，不是應該要按下「送出」，網頁重新整理之後，才會回傳資料過來嗎？&lt;br/>
+就像我們打字完，按下「送出」，Google 網站會重新整理，接著顯示出各個有關「籃球直播」的網站。&lt;/p>
+&lt;blockquote>
+&lt;p>如果我們每次輸入關鍵字，都要重新整理才能看到搜尋建議，不會覺得很慢很煩嗎？&lt;/p>&lt;/blockquote>
+&lt;p>當然會。但是現在我們在搜尋欄輸入文字，並沒有經過重新整理，就可以呈現出下面一堆搜尋建議，這是為什麼呢？&lt;br/>
+這就要講到一個特別的技術，叫做「AJAX」。&lt;/p>
+&lt;h2 id="什麼是-ajax">什麼是 AJAX
+&lt;/h2>&lt;p>AJAX，用一句話來描述，就是「在不重新整理頁面的情況下，跟資料庫拿取資料，並將資料呈現到網頁上」的技術（或說過程統稱）。&lt;/p>
+&lt;p>AJAX，全名叫做  &lt;strong>A&lt;/strong>synchronous &lt;strong>J&lt;/strong>avaScript &lt;strong>A&lt;/strong>nd &lt;strong>X&lt;/strong>ML。&lt;/p>
+&lt;p>我們來單字拆解一下：Asynchronous 是「非同步」的意思，講白話一點，就是「建構網頁」和「向資料庫拿資料」是非同步、在不同地方進行的，兩件事情不會互相干涉。所以，我可以同時「建構網頁」和「向資料庫拿資料」。&lt;/p>
+&lt;p>JavaScript 是向資料庫拿資料所使用的程式語言。XML 則是這些資料的格式，可以想像成是類似 MarkDown 的東西，他們都有各自的一套特定格式。&lt;/p>
+&lt;p>所以 Asynchronous JavaScript And XML 就是，瀏覽器在不重新整理頁面的情況下，使用 JavaScript 這個程式語言，和資料庫拿取 XML 格式的數據。&lt;/p>
+&lt;p>（題外話：雖然早期交換的數據是用 XML 格式，但現在更常用的其實是 JSON 格式，不過 AJAX 還是保留 XML 在名字中。）&lt;/p>
+&lt;h2 id="為什麼有辦法做到非同步">為什麼有辦法做到「非同步」？
+&lt;/h2>&lt;p>理解了 AJAX 是怎樣的技術之後，那為什麼 AJAX 可以這樣非同步進行作業？它跟傳統的方法有什麼不同？&lt;/p>
+&lt;p>簡單來說，我們的瀏覽器有很多個組件，例如各式各樣的引擎、使用者介面等等。傳統方法中，「建構網頁」和「向資料庫拿資料」會重複使用某些組件，所以這兩個不能同時進行，一個時間只能選擇做一件事情。但是在 AJAX 這個技術裡面，「建構網頁」和「向資料庫拿資料」使用的是不同的組件，所以它們才能夠在不影響網頁建構的情況下，同時向資料庫拿資料。&lt;/p>
+&lt;h2 id="還有哪些地方有用到-ajax-技術">還有哪些地方有用到 AJAX 技術？
+&lt;/h2>&lt;h3 id="社群媒體">社群媒體
+&lt;/h3>&lt;ul>
+&lt;li>例如：YouTube、Facebook、Instagram、Twitter&lt;/li>
+&lt;li>當我們往下捲動，他會跟伺服器拿取更多貼文資料。有時候網路速度沒那麼快，他還會停頓一陣子，才會跑出新的貼文。但是在這整個過程中，網頁並沒有重新整理，就能載入更多貼文資料。&lt;/li>
+&lt;/ul>
+&lt;h3 id="註冊頁面">註冊頁面
+&lt;/h3>&lt;ul>
+&lt;li>例如：Email 註冊、各種需要註冊的網頁&lt;/li>
+&lt;li>當我們輸入想要註冊的帳號，他可以在沒有重新整理的情況下，就從後臺伺服器找到有其他人已經用過這個帳號的資料了。&lt;/li>
+&lt;/ul>
+&lt;h3 id="地圖">地圖
+&lt;/h3>&lt;ul>
+&lt;li>點選地點，會出現電話、地址等相關資訊&lt;/li>
+&lt;li>點選導航，會出現路線&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>以上是關於「為什麼 Google 搜尋欄可以及時顯示搜尋建議？」的文章，希望你看完之後有稍微網頁某部分的運作方式。&lt;/p>
+&lt;p>下一篇文章，我會試著用很簡單的方式說明 AJAX 這個技術在程式碼實際上是怎麼運作的。&lt;/p></description></item></channel></rss>

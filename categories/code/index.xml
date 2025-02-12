@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式相關 on RevolC.Blog</title><link>https://revolc.blog/categories/code/</link><description>Recent content in 程式相關 on RevolC.Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 20 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://revolc.blog/categories/code/index.xml" rel="self" type="application/rss+xml"/><item><title>試著讓初學者理解 API</title><link>https://revolc.blog/posts/understanding-api-for-beginner/</link><pubDate>Sat, 20 Jul 2024 00:00:00 +0000</pubDate><guid>https://revolc.blog/posts/understanding-api-for-beginner/</guid><description>&lt;h2 id="基本解釋">基本解釋
+&lt;/h2>&lt;p>API（Application Programming Interface），中文翻為應用程式介面，用一句話來解釋的話，就是：兩個應用程式（電腦）接觸時所要依照的規範。&lt;/p>
+&lt;p>再用白話一點的方式來解釋，就是：「&lt;strong>程式跟程式之間的面交規範。&lt;/strong>」&lt;/p>
+&lt;p>以面交買東西為例，假如今天我要跟某個店家面交買東西，那以下可能是他會事先定好的注意事項：&lt;/p>
+&lt;ol>
+&lt;li>你在哪個地方可以跟我碰面。&lt;/li>
+&lt;li>你要給我什麼（例如錢、身分證件）。&lt;/li>
+&lt;li>這樣我就會給你什麼。&lt;/li>
+&lt;/ol>
+&lt;p>假如我今天要預約要買鋼琴，那他會事先跟我說：&lt;/p>
+&lt;ol>
+&lt;li>你可以在臺中的某個街道跟我碰面。&lt;/li>
+&lt;li>你要給我事先約好的鋼琴金額、身分證件。&lt;/li>
+&lt;li>我會給你鋼琴。&lt;/li>
+&lt;/ol>
+&lt;p>現在把鋼琴換成是某個「電腦資料」，比如說 NBA 的球員數據好了。
+如果我今天想要找 Nikola Jokic 去年整年的數據，那我可能就會去找有提供數據的店家，他也已經定好面交規範：&lt;/p>
+&lt;ol>
+&lt;li>你可以在某個秘密網址找到我。&lt;/li>
+&lt;li>你要給我你想要哪一年的什麼數據。&lt;/li>
+&lt;li>我就會給你球員的數據。&lt;/li>
+&lt;/ol>
+&lt;p>這個東西翻成程式的語言就是：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>URL&lt;/strong>：你可以在某個秘密「網址」找到我。&lt;/li>
+&lt;li>&lt;strong>Request&lt;/strong>：我需要你給我「要求」的東西。&lt;/li>
+&lt;li>&lt;strong>Response&lt;/strong>：我會「回應」給你相關的資料。&lt;/li>
+&lt;/ol>
+&lt;h2 id="api-的用法">API 的用法
+&lt;/h2>&lt;p>以下我會舉例三種方法：&lt;code>GET, POST, PUT&lt;/code>。&lt;/p>
+&lt;h3 id="get">GET
+&lt;/h3>&lt;p>字面意思，&lt;code>GET&lt;/code> 指的就是「拿取」資料。&lt;/p>
+&lt;p>以在 Instagram 貼文為例。如果今天我要看某個人的某篇文章，於是我點進了這個文章頁面。這時 Instagram 的前端工程師就要跟後端去拿資料，通常就會用 &lt;code>GET&lt;/code>。&lt;/p>
+&lt;p>他們之間所定的 API 規則可能長這樣：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">URL: 127.0.0.1/articles
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Request: article_id, user_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Response: time, content, likes, comments
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>我們可以在 &lt;code>127.0.0.1/articles&lt;/code> 這個網址碰面。&lt;/li>
+&lt;li>你要給我的東西是：
+&lt;ul>
+&lt;li>你想要看哪篇貼文（&lt;code>article_id&lt;/code>）&lt;/li>
+&lt;li>想要看這篇貼文的是誰（&lt;code>user_id&lt;/code>）（如果發文的人跟使用者不是好友，可能會被擋住。）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>我會回傳給你：
+&lt;ul>
+&lt;li>發文時間（&lt;code>time&lt;/code>）&lt;/li>
+&lt;li>文章內容（&lt;code>content&lt;/code>）&lt;/li>
+&lt;li>有誰按讚（&lt;code>likes&lt;/code>）&lt;/li>
+&lt;li>留言有哪些（&lt;code>comments&lt;/code>）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="post">POST
+&lt;/h3>&lt;p>&lt;code>POST&lt;/code> 可以想成是 PO 文，用學術一點的解釋就是，使用者在資料庫「創建」一筆新的資料。&lt;/p>
+&lt;p>以使用者要發一篇新的文為例，API 規格可能長這樣：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">URL: 127.0.0.1/articles
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Request: user_id, content
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Response: article_id, &amp;#34;發文成功&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>雖然這邊的網址跟 &lt;code>GET&lt;/code> 一樣，但是因為一個是 &lt;code>GET&lt;/code>，一個是 &lt;code>POST&lt;/code>。用法不同，所以可以同時存在，不會衝突。&lt;/p>
+&lt;ul>
+&lt;li>我們可以在 &lt;code>127.0.0.1/articles&lt;/code> 這個網址碰面。&lt;/li>
+&lt;li>你要給我的東西：
+&lt;ul>
+&lt;li>發文的人是誰（&lt;code>user_id&lt;/code>）&lt;/li>
+&lt;li>文章內容（&lt;code>content&lt;/code>）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>我會回傳給你：
+&lt;ul>
+&lt;li>這篇文章的在資料庫是編號多少（&lt;code>article_id&lt;/code>）。&lt;/li>
+&lt;li>「發文成功」（&lt;code>message&lt;/code>）。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="put">PUT
+&lt;/h3>&lt;p>可以 &lt;code>PUT&lt;/code> 想成是 Edit（編輯）。&lt;/p>
+&lt;p>假設今天使用者要編輯貼文，API 規格可能長這樣：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">URL: 127.0.0.1/articles
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Request: article_id, content, user_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Response: &amp;#34;發文成功&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>我們可以在 &lt;code>127.0.0.1/articles&lt;/code> 這個網址碰面。&lt;/li>
+&lt;li>你要給我的東西：
+&lt;ul>
+&lt;li>這是哪篇文章（&lt;code>article_id&lt;/code>）&lt;/li>
+&lt;li>新的文章內容（&lt;code>content&lt;/code>）&lt;/li>
+&lt;li>發文的人是誰（&lt;code>user_id&lt;/code>）、&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>我會回傳給你：「發文成功」（&lt;code>message&lt;/code>）。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>你可能有注意到這三個 API 的 URL 都一樣，這樣會不會打架？&lt;br>
+不會，因為是程式會把 &lt;code>GET, POST, PUT&lt;/code> 這些動作看成是不同的。&lt;/p>&lt;/blockquote>
+&lt;h3 id="一些工作用語">一些工作用語
+&lt;/h3>&lt;p>在公司裡面，通常大家會用的詞語是「打」。我可以稍微舉例一些詞句：&lt;/p>
+&lt;ul>
+&lt;li>我按下這個按鈕的時候需要拿到資料，這時候應該要「打」這一隻 API。&lt;/li>
+&lt;li>這一隻 API 漏了什麼參數，我需要你給我，可以修改一下嗎？&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="總結">總結
+&lt;/h2>&lt;p>以上是關於 API 的白話分享，希望這篇文章對你有幫助！&lt;/p>
+&lt;p>工作之前我也是花了好多的時間搞懂到底什麼是 API，不過其實工作之後會覺得，這根本不是一個「學問」，比較像是一個習以為常的用品。或許這也是為什麼，當有人問一個工程師說：「什麼是 API？」對方也會一時之間不知道怎麼回答。&lt;/p></description></item><item><title>在 Git 裡面，怎麼把自己的分支 merge 進 main？</title><link>https://revolc.blog/posts/how-to-merge-git-branch-to-main/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://revolc.blog/posts/how-to-merge-git-branch-to-main/</guid><description>&lt;p>簡單來說，分成三個階段：&lt;/p>
+&lt;ol>
+&lt;li>將自己分支的本地端和遠端同步。&lt;/li>
+&lt;li>將主分支合併到自己的主分支，並讓本地端和遠端同步。將主分支合併到自己的主分支，並讓本地端和遠端同步。&lt;/li>
+&lt;li>將自己分支合併到主分支。&lt;/li>
+&lt;/ol>
+&lt;p>假設公司的主要分支叫做 &lt;code>main&lt;/code>，而我現在在開發的分支叫做 &lt;code>feature/login&lt;/code>，那我要怎麼把我現在的分支合併到 &lt;code>main&lt;/code>？
+首先，要先讓自己的分支是乾淨的，也就是要在 &lt;code>feature/login&lt;/code> 執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">git pull
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>執行完之後，現在本地端和遠端的 &lt;code>feature/login&lt;/code> 是同步的。&lt;/p>
+&lt;p>接著，要把遠端最新的 &lt;code>main&lt;/code> 給拉到本地端，執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">git fetch origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>此時，我的本地端就有最新的 &lt;code>feature/login&lt;/code> 和 &lt;code>origin/main&lt;/code>。&lt;/p>
+&lt;p>接著就是要把這兩個分支合併起來。在 &lt;code>feature/login&lt;/code> 分支上執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">git merge origin/main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>這個指令是要將剛剛從遠端啦過來的最新的 &lt;code>main&lt;/code> 合併到我的 &lt;code>feature/login&lt;/code>。
+此時，可能會發生所謂的「衝突」（Conflict），這是因為你跟別人可能有改到同一個檔案。因此，所謂的「解衝突」就是要決定說，在這個檔案裡面，兩個檔案不一樣的地方要選擇哪一個。&lt;/p>
+&lt;p>當解完衝突之後，再執行：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">git push
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>這時候，你是將你的 &lt;code>feature/login&lt;/code> 分支（其中也包含 &lt;code>main&lt;/code> 的部分）給推到遠端程式碼上面。
+此時可以檢查 Commit 記錄。所謂的 Commit 記錄就是每一次程式碼提交的「截圖」。
+若 &lt;code>main&lt;/code> 最新的 Commit 記錄有包含在 &lt;code>feature/login&lt;/code> 的 Commit 記錄裡面，那就代表你的 &lt;code>feature/login&lt;/code> 已經包含了 &lt;code>main&lt;/code>，這時就可以發出合併請求（Merge Request），等待主管同意。&lt;/p></description></item><item><title>AJAX 在程式上怎麼運作？</title><link>https://revolc.blog/posts/ajax-code-example/</link><pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate><guid>https://revolc.blog/posts/ajax-code-example/</guid><description>&lt;p>上一篇文章，我們講到了 Google 可以在不重新整理頁面的情況下，使用「AJAX」這個技術，同時向資料庫拿取資料，並將這些搜尋建議的資料呈現在畫面上。&lt;/p>
+&lt;p>這一篇文章，我會試著用很簡單的方式說明 AJAX 是怎麼在程式上運作的。&lt;/p>
+&lt;h2 id="瀏覽器端的程式javascript">瀏覽器端的程式（JavaScript）
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">searchFunction&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">input&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;searchBox&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">value&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">xhr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">XMLHttpRequest&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">xhr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;GET&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;search.php?q=&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nb">encodeURIComponent&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">input&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">xhr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">onreadystatechange&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">readyState&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">4&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">status&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;result&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">innerHTML&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">responseText&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">xhr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">send&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>&lt;code>function searchFunction() {}&lt;/code> 代表我創建了一個功能，名字叫做 &lt;code>searchFunction&lt;/code>，並把所有功能細項都整理在這裡面。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>把搜尋欄（searchbox）裡輸入的文字（value）存到 &lt;code>input&lt;/code> 裡面。假設我在 &lt;code>searchbox&lt;/code> 輸入籃球，那 &lt;code>input&lt;/code> 就會是「籃球」。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>創建一個 &lt;code>XMLHttpRequest&lt;/code> 類型的工具物件，這個工具可以用來跟資料庫交換 XML 資料，裡面也包含很多功能跟狀態。而 &lt;code>xhr&lt;/code> 是我給這個工具取的代號。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>xhr.open()&lt;/code> 是在設定 &lt;code>xhr&lt;/code> 物件要跟資料庫講什麼話，讓資料庫知道它是要拿資料，就像我們用中文說「我要拿資料」，程式也有它自己的語言跟溝通方式。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>GET&lt;/code> 代表我想要跟資料庫拿資料，這應該很好懂。&lt;/li>
+&lt;li>&lt;code>search.php&lt;/code> 是一個資料庫的文件，&lt;code>php&lt;/code> 是一個資料庫端運行的程式，同時也是檔名（例如 &lt;code>.doc&lt;/code>）。&lt;/li>
+&lt;li>&lt;code>q&lt;/code> 是 &lt;code>query&lt;/code>，代表我要查詢，後面的 &lt;code>encodeURIComponent&lt;/code> 就是把我剛剛設定的 &lt;code>input&lt;/code> 轉成資料庫可以讀取的格式。&lt;/li>
+&lt;li>最後的 &lt;code>true&lt;/code> 是設定我這個操作要是非同步的。&lt;/li>
+&lt;li>總結這一行的解釋：我想要以非同步的方式（true）向資料庫發出一個 &lt;code>GET&lt;/code> 的請求，而其中詳細訊息叫做 &lt;code>search.php?q=籃球&lt;/code>。意思是我要對資料庫的 &lt;code>search.php&lt;/code> 這個檔案，發出一個要查詢（&lt;code>q&lt;/code>）籃球這個關鍵字（&lt;code>encodeURIComponent(input)&lt;/code>）的訊息。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>xhr.onreadystatechange&lt;/code> 是在設定 &lt;code>xhr&lt;/code> 這個物件的功能：當資料庫回傳資料成功時，要怎麼顯示到瀏覽器畫面上。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>readyState&lt;/code> 代表索取資料的狀態，4 代表已經索取成功了，而 &lt;code>status = 200&lt;/code> 也是另一種代表索取資料成功的狀態。&lt;/li>
+&lt;li>當滿足這兩個條件時，瀏覽器會把我拿到的資料（responseText），呈現在我設定為 &lt;code>result&lt;/code> 的地方。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>把 &lt;code>xhr&lt;/code> 的所有功能全部都設置好之後，就使用 &lt;code>xhr.send()&lt;/code> 對資料庫正式發送索取資料的訊息。&lt;/p>
+&lt;ul>
+&lt;li>為什麼要在正式發送訊息前，就先設定功能？如果先發送再設定功能，有可能會錯過一些狀態變化或資訊。所以為了可以在拿到資料的時候馬上做出反應，會先把所有功能都設定好再正式發送訊息。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="資料庫端的程式">資料庫端的程式
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-PHP" data-lang="PHP">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$query&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nv">$_GET&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;q&amp;#39;&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$searchSuggestions&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$query&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s2">&amp;#34;直播&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$query&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s2">&amp;#34;規則&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$query&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s2">&amp;#34;訓練&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">echo&lt;/span> &lt;span class="s2">&amp;#34;您輸入的關鍵字為：&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="nx">htmlspecialchars&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$query&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s2">&amp;#34;&amp;lt;br&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">echo&lt;/span> &lt;span class="s2">&amp;#34;搜尋建議為：&amp;lt;br&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">foreach&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">$searchSuggestions&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nv">$suggestion&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">echo&lt;/span> &lt;span class="nx">htmlspecialchars&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$suggestion&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s2">&amp;#34;&amp;lt;br&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>當資料庫收到剛剛的訊息之後，會使用 &lt;code>search.php&lt;/code> 這個檔案來執行。&lt;/li>
+&lt;li>&lt;code>&amp;lt;?php ... ?&amp;gt;&lt;/code>：這是 PHP 語法的開始和結束標籤。它在告訴資料庫，這裡面的內容應該使用 PHP 來處理。&lt;/li>
+&lt;li>&lt;code>$_GET['q']&lt;/code> 是用來設定我剛剛在瀏覽器端使用 &lt;code>GET&lt;/code> 傳遞裡面包含 &lt;code>q&lt;/code> 的訊息，也就是籃球。接著我把這個籃球的關鍵字，設定給一個叫做 &lt;code>$query&lt;/code> 的參數。&lt;/li>
+&lt;li>&lt;code>$query . &amp;quot;直播&amp;quot;&lt;/code> 裡面的 &lt;code>.&lt;/code> 代表把這些單字接在一起，所以 &lt;code>searchSuggestion&lt;/code> 會變成：「籃球直播、籃球規則、籃球訓練」。&lt;/li>
+&lt;li>&lt;code>htmlspecialchars($query)&lt;/code> 代表我把「籃球」這個單字包裝成程式能看懂的單字，&lt;code>&amp;lt;br&amp;gt;&lt;/code> 代表換行，而 &lt;code>echo&lt;/code> 代表把這整個句子回傳。所以這行代表：回傳「您輸入的關鍵字為：籃球（換行）」&lt;/li>
+&lt;li>下一行 &lt;code>echo &amp;quot;搜尋建議：&amp;lt;br&amp;gt;&amp;quot;;&lt;/code> 代表：回傳「搜尋建議為：（換行）」&lt;/li>
+&lt;li>&lt;code>foreach&lt;/code> 代表我要使用一個迴圈，以 &lt;code>$suggestion&lt;/code> 為索引，從 &lt;code>$searchSuggestions&lt;/code> 的第一個項目依序輪到最後一個項目。在這個情況下，&lt;code>$searchSuggestions&lt;/code> 有三個項目，所以這個迴圈裡面的程式會進行三次，而每次的 &lt;code>$suggestion&lt;/code>依序為「籃球直播、籃球規則、籃球訓練」。&lt;/li>
+&lt;li>&lt;code>echo htmlspecialchars($suggestion) . &amp;quot;&amp;lt;br&amp;gt;&amp;quot;;&lt;/code> 會進行三次，代表：回傳「籃球直播（換行）」、回傳「籃球規則（換行）」、回傳「籃球訓練（換行）」。&lt;/li>
+&lt;/ul>
+&lt;p>所以這整個資料庫端的程式會回傳給瀏覽器的訊息如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">您輸入的關鍵字為：籃球
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">搜尋建議為：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">籃球直播
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">籃球規則
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">籃球訓練
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="最後整理簡化版">最後整理（簡化版）
+&lt;/h2>&lt;p>上面我依序解釋了每行程式碼在做什麼事情，可能有點頭暈了。我最後再簡單說明這整個過程到底做了什麼事情。&lt;/p>
+&lt;ul>
+&lt;li>我在瀏覽器的搜尋欄位輸入「籃球」。&lt;/li>
+&lt;li>瀏覽器創建了一個可以跟資料庫溝通的工具物件。&lt;/li>
+&lt;li>設定這個物件的功能：
+&lt;ul>
+&lt;li>我要跟資料庫說：請回傳給我「籃球」這個字的搜尋建議。&lt;/li>
+&lt;li>資料庫回傳搜尋建議回來之後，我要顯示在哪個地方。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>物件的功能都設定完之後，正式傳訊息給資料庫。&lt;/li>
+&lt;li>資料庫收到訊息之後，根據「籃球」這個關鍵字找到了「籃球直播、籃球規則、籃球訓練」這幾個搜尋建議。&lt;/li>
+&lt;li>把這些搜尋建議全部都回傳給瀏覽器。&lt;/li>
+&lt;li>瀏覽器收到這些回傳的訊息之後，按照前面設定過的功能，把這些搜尋建議顯示在網頁上。&lt;/li>
+&lt;/ul>
+&lt;p>對使用者來說，我們輸入關鍵字，網頁上馬上出現搜尋建議，這只有短短不到 0.01 秒的時間。但就在這麼短的時間內，經過了這麼多的步驟。&lt;/p>
+&lt;p>希望經過我的說明，讓你對網頁的運作有更進一步的了解！&lt;/p></description></item><item><title>為什麼 Google 搜尋欄可以及時顯示搜尋建議？</title><link>https://revolc.blog/posts/why-google-search-fast/</link><pubDate>Thu, 04 Apr 2024 16:00:00 +0800</pubDate><guid>https://revolc.blog/posts/why-google-search-fast/</guid><description>&lt;p>你有沒有想過，當你在 Google 搜尋欄打字的時候，為什麼下面可以及時產生出各種搜尋建議？假設我們在搜尋欄輸入「籃球」，下面會及時顯示像是「籃球比分」、「籃球直播」等搜尋建議。&lt;/p>
+&lt;p>照理來說，這些搜尋建議都是資料，被存放在 Google 的資料庫（或稱後臺、伺服器）。如果要從 Google 的資料庫索取到這些搜尋建議，不是應該要按下「送出」，網頁重新整理之後，才會回傳資料過來嗎？&lt;br/>
+就像我們打字完，按下「送出」，Google 網站會重新整理，接著顯示出各個有關「籃球直播」的網站。&lt;/p>
+&lt;blockquote>
+&lt;p>如果我們每次輸入關鍵字，都要重新整理才能看到搜尋建議，不會覺得很慢很煩嗎？&lt;/p>&lt;/blockquote>
+&lt;p>當然會。但是現在我們在搜尋欄輸入文字，並沒有經過重新整理，就可以呈現出下面一堆搜尋建議，這是為什麼呢？&lt;br/>
+這就要講到一個特別的技術，叫做「AJAX」。&lt;/p>
+&lt;h2 id="什麼是-ajax">什麼是 AJAX
+&lt;/h2>&lt;p>AJAX，用一句話來描述，就是「在不重新整理頁面的情況下，跟資料庫拿取資料，並將資料呈現到網頁上」的技術（或說過程統稱）。&lt;/p>
+&lt;p>AJAX，全名叫做  &lt;strong>A&lt;/strong>synchronous &lt;strong>J&lt;/strong>avaScript &lt;strong>A&lt;/strong>nd &lt;strong>X&lt;/strong>ML。&lt;/p>
+&lt;p>我們來單字拆解一下：Asynchronous 是「非同步」的意思，講白話一點，就是「建構網頁」和「向資料庫拿資料」是非同步、在不同地方進行的，兩件事情不會互相干涉。所以，我可以同時「建構網頁」和「向資料庫拿資料」。&lt;/p>
+&lt;p>JavaScript 是向資料庫拿資料所使用的程式語言。XML 則是這些資料的格式，可以想像成是類似 MarkDown 的東西，他們都有各自的一套特定格式。&lt;/p>
+&lt;p>所以 Asynchronous JavaScript And XML 就是，瀏覽器在不重新整理頁面的情況下，使用 JavaScript 這個程式語言，和資料庫拿取 XML 格式的數據。&lt;/p>
+&lt;p>（題外話：雖然早期交換的數據是用 XML 格式，但現在更常用的其實是 JSON 格式，不過 AJAX 還是保留 XML 在名字中。）&lt;/p>
+&lt;h2 id="為什麼有辦法做到非同步">為什麼有辦法做到「非同步」？
+&lt;/h2>&lt;p>理解了 AJAX 是怎樣的技術之後，那為什麼 AJAX 可以這樣非同步進行作業？它跟傳統的方法有什麼不同？&lt;/p>
+&lt;p>簡單來說，我們的瀏覽器有很多個組件，例如各式各樣的引擎、使用者介面等等。傳統方法中，「建構網頁」和「向資料庫拿資料」會重複使用某些組件，所以這兩個不能同時進行，一個時間只能選擇做一件事情。但是在 AJAX 這個技術裡面，「建構網頁」和「向資料庫拿資料」使用的是不同的組件，所以它們才能夠在不影響網頁建構的情況下，同時向資料庫拿資料。&lt;/p>
+&lt;h2 id="還有哪些地方有用到-ajax-技術">還有哪些地方有用到 AJAX 技術？
+&lt;/h2>&lt;h3 id="社群媒體">社群媒體
+&lt;/h3>&lt;ul>
+&lt;li>例如：YouTube、Facebook、Instagram、Twitter&lt;/li>
+&lt;li>當我們往下捲動，他會跟伺服器拿取更多貼文資料。有時候網路速度沒那麼快，他還會停頓一陣子，才會跑出新的貼文。但是在這整個過程中，網頁並沒有重新整理，就能載入更多貼文資料。&lt;/li>
+&lt;/ul>
+&lt;h3 id="註冊頁面">註冊頁面
+&lt;/h3>&lt;ul>
+&lt;li>例如：Email 註冊、各種需要註冊的網頁&lt;/li>
+&lt;li>當我們輸入想要註冊的帳號，他可以在沒有重新整理的情況下，就從後臺伺服器找到有其他人已經用過這個帳號的資料了。&lt;/li>
+&lt;/ul>
+&lt;h3 id="地圖">地圖
+&lt;/h3>&lt;ul>
+&lt;li>點選地點，會出現電話、地址等相關資訊&lt;/li>
+&lt;li>點選導航，會出現路線&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>以上是關於「為什麼 Google 搜尋欄可以及時顯示搜尋建議？」的文章，希望你看完之後有稍微網頁某部分的運作方式。&lt;/p>
+&lt;p>下一篇文章，我會試著用很簡單的方式說明 AJAX 這個技術在程式碼實際上是怎麼運作的。&lt;/p></description></item></channel></rss>
